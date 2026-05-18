@@ -1,0 +1,739 @@
+/* =====================================================
+   DESIGN TOKENS — change your colors and fonts here.
+   Everything on the page inherits from these variables.
+   ===================================================== */
+:root {
+    --bg:         #0b0a08;   /* main background — near-black with warmth */
+    --bg-2:       #111009;   /* alternate section background */
+    --bg-card:    #17150f;   /* card background */
+    --gold:       #c9a84c;   /* primary accent color */
+    --gold-dim:   #8a6f2e;   /* muted gold for decorative text */
+    --gold-glow:  rgba(201, 168, 76, 0.12);
+    --text:       #e8dfc4;   /* primary text — warm parchment */
+    --text-muted: #8b7d5e;   /* secondary text */
+    --stone:      #2e2516;   /* deep stone for featured cards */
+    --border:     rgba(201, 168, 76, 0.18);
+
+    --font-display: 'Cinzel', Georgia, serif;         /* Roman-style headings */
+    --font-body:    'Cormorant Garamond', Georgia, serif; /* elegant body text */
+
+    --max-width: 1100px;
+    --transition: 0.3s ease;
+}
+
+
+/* =====================================================
+   RESET & BASE
+   ===================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* =====================================================
+   GREEK KEY BORDER — decorative horizontal rule
+   Used at section transitions
+   ===================================================== */
+.greek-border-bottom,
+.greek-border-top {
+    height: 8px;
+    background-image: repeating-linear-gradient(
+        90deg,
+        var(--gold)   0px,  var(--gold)   2px,
+        transparent   2px,  transparent   8px,
+        var(--gold)   8px,  var(--gold)  10px,
+        transparent  10px,  transparent  18px
+    );
+    opacity: 0.3;
+}
+
+
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
+#navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 2rem;
+    transition: background var(--transition), border-bottom var(--transition);
+}
+
+#navbar.scrolled {
+    background: rgba(11, 10, 8, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 1.4rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+
+/* =====================================================
+   HERO SECTION
+   ===================================================== */
+#hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Atmospheric marble/stone background */
+#hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 15% 60%, rgba(139, 26, 26, 0.14) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 20%, rgba(201, 168, 76, 0.07) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 90%, rgba(46, 37, 22, 0.5) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Subtle grid texture — gives a stone-carved look */
+#hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(201, 168, 76, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201, 168, 76, 0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    animation: heroFadeIn 1.2s ease forwards;
+}
+
+@keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-era {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.55em;
+    color: var(--gold-dim);
+    margin-bottom: 1.5rem;
+}
+
+.hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 16vw, 14rem);
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+}
+
+.name-char {
+    display: inline-block;
+    transition: color var(--transition), text-shadow var(--transition);
+}
+
+.name-char:hover {
+    color: var(--gold);
+    text-shadow: 0 0 40px rgba(201, 168, 76, 0.4);
+}
+
+.laurel-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin: 1.75rem auto;
+    max-width: 300px;
+}
+
+.laurel {
+    font-size: 1.4rem;
+    color: var(--gold);
+    opacity: 0.8;
+}
+
+.laurel.flipped {
+    transform: scaleX(-1);
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.6;
+}
+
+.hero-roles {
+    font-family: var(--font-display);
+    font-size: clamp(0.65rem, 2vw, 0.85rem);
+    letter-spacing: 0.35em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.hero-motto {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--gold-dim);
+    margin-bottom: 3rem;
+}
+
+.hero-cta {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 0.85rem 2.5rem;
+    transition: all var(--transition);
+}
+
+.hero-cta:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: var(--gold-glow);
+}
+
+.greek-border-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+}
+
+
+/* =====================================================
+   SECTIONS — SHARED LAYOUT
+   ===================================================== */
+section {
+    padding: 7rem 2rem;
+}
+
+#about    { background-color: var(--bg); }
+#projects { background-color: var(--bg-2); }
+#skills   { background-color: var(--bg); }
+#connect  { background-color: var(--bg-2); }
+
+.section-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.section-num {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.7rem;
+    flex-shrink: 0;
+}
+
+.section-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text);
+}
+
+.section-rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+}
+
+.section-intro {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    max-width: 620px;
+}
+
+
+/* =====================================================
+   ABOUT
+   ===================================================== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-image-placeholder {
+    aspect-ratio: 3/4;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Marble-vein shimmer on the photo placeholder */
+.about-image-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(135deg, transparent 30%, rgba(201, 168, 76, 0.04) 50%, transparent 70%),
+        linear-gradient(  45deg, transparent 20%, rgba(139,  26,  26, 0.04) 40%, transparent 60%);
+}
+
+/* When you add your actual photo, use this class */
+.about-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    filter: grayscale(20%) sepia(10%);
+}
+
+.about-text h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.about-text p {
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    font-size: 1.15rem;
+}
+
+.about-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--gold);
+}
+
+.stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+
+/* =====================================================
+   PROJECTS / WORKS
+   ===================================================== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: border-color var(--transition), transform var(--transition);
+    overflow: hidden;
+}
+
+/* Gold left-border that sweeps up on hover */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform var(--transition);
+}
+
+.project-card:hover::before {
+    transform: scaleY(1);
+}
+
+.project-card:hover {
+    border-color: rgba(201, 168, 76, 0.35);
+    transform: translateY(-3px);
+}
+
+.project-card--featured {
+    background: linear-gradient(145deg, var(--bg-card), var(--stone));
+    border-color: rgba(201, 168, 76, 0.28);
+}
+
+.project-num {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    color: var(--gold-dim);
+    margin-bottom: 1rem;
+}
+
+.project-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+}
+
+.project-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.65;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tag {
+    font-family: var(--font-display);
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.65rem;
+}
+
+.project-link {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    transition: letter-spacing var(--transition);
+}
+
+.project-link:hover {
+    letter-spacing: 0.35em;
+}
+
+
+/* =====================================================
+   SKILLS / VIRTUES
+   ===================================================== */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-block {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    transition: border-color var(--transition), transform var(--transition);
+}
+
+.skill-block:hover {
+    border-color: rgba(201, 168, 76, 0.35);
+    transform: translateY(-2px);
+}
+
+.skill-icon {
+    font-size: 1.7rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.skill-block h4 {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+}
+
+.skill-block p {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+
+/* =====================================================
+   CONNECT
+   ===================================================== */
+#connect {
+    text-align: center;
+}
+
+.connect-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.connect-inner .section-header {
+    justify-content: center;
+}
+
+.connect-text {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin-bottom: 3rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    transition: all var(--transition);
+}
+
+.social-icon {
+    font-size: 1rem;
+}
+
+.social-btn--ig:hover {
+    background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+    color: #fff;
+    border-color: transparent;
+}
+
+.social-btn--gh:hover {
+    background: var(--stone);
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+.connect-quote {
+    font-style: italic;
+    color: var(--gold-dim);
+    font-size: 1.1rem;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+footer {
+    background: var(--bg);
+    text-align: center;
+    padding: 2.5rem 2rem;
+}
+
+footer .greek-border-top {
+    margin-bottom: 2rem;
+}
+
+footer p {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   FADE-IN ANIMATION
+   Elements start invisible; script.js reveals them
+   as they scroll into the viewport.
+   ===================================================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   RESPONSIVE — MOBILE
+   ===================================================== */
+@media (max-width: 768px) {
+
+    /* Stack about section vertically on mobile */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .about-image-placeholder {
+        aspect-ratio: 1;
+        max-width: 220px;
+        margin: 0 auto;
+    }
+
+    .about-stats {
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    /* Mobile nav */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: rgba(11, 10, 8, 0.97);
+        padding: 1.5rem 2rem 2rem;
+        border-bottom: 1px solid var(--border);
+        gap: 1.5rem;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    /* Center section headers on mobile */
+    .connect-inner .section-header {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .social-btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+}
