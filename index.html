@@ -28,6 +28,7 @@
             <a href="#" class="nav-logo">C · MSI</a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#projects">Works</a></li>
                 <li><a href="#skills">Virtues</a></li>
                 <li><a href="#connect">Connect</a></li>
@@ -69,9 +70,6 @@
 
     <!-- ════════════════════════════════════════════════════
          ABOUT SECTION
-         Edit the paragraph below — tell your story your way.
-         To add a photo: replace the placeholder div with:
-           <img src="your-photo.jpg" alt="Caio" class="about-photo">
          ════════════════════════════════════════════════════ -->
     <section id="about">
         <div class="section-container">
@@ -83,11 +81,12 @@
 
             <div class="about-grid">
 
-                <!-- Photo block — swap the div for an <img> when you have a photo -->
+                <!-- Profile photo — assets/img/caio-profile.jpg -->
                 <div class="about-image-block">
-                    <div class="about-image-placeholder">
-                        <span>CAIO</span>
-                    </div>
+                    <img src="assets/img/caio-profile.jpg"
+                         alt="Caio"
+                         class="about-photo"
+                         onerror="this.parentElement.innerHTML='<div class=\'about-image-placeholder\'><span>CAIO</span></div>'">
                 </div>
 
                 <div class="about-text">
@@ -120,6 +119,43 @@
                 </div>
 
             </div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════
+         GALLERY SECTION
+         Add/remove .gallery-item divs to change the photos.
+         Image names: caio-family.jpg, caio-capitol.jpg,
+                      caio-dc.jpg, caio-beach.jpg
+         ════════════════════════════════════════════════════ -->
+    <section id="gallery">
+        <div class="gallery-grid">
+
+            <!-- Family at Capitol steps -->
+            <div class="gallery-item gallery-item--wide">
+                <img src="assets/img/caio-family.jpg" alt="With family" loading="lazy">
+                <div class="gallery-caption">Family · Washington D.C.</div>
+            </div>
+
+            <!-- Lincoln statue inside the Capitol rotunda -->
+            <div class="gallery-item">
+                <img src="assets/img/caio-capitol.jpg" alt="U.S. Capitol" loading="lazy">
+                <div class="gallery-caption">U.S. Capitol · Hall of Statues</div>
+            </div>
+
+            <!-- Reflecting Pool thumbs up -->
+            <div class="gallery-item">
+                <img src="assets/img/caio-dc.jpg" alt="Lincoln Memorial" loading="lazy">
+                <div class="gallery-caption">Lincoln Memorial · The Mall</div>
+            </div>
+
+            <!-- Beach / athlete -->
+            <div class="gallery-item">
+                <img src="assets/img/caio-beach.jpg" alt="Beach" loading="lazy">
+                <div class="gallery-caption">Game on.</div>
+            </div>
+
         </div>
     </section>
 
