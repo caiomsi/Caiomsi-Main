@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#0b0a08"/>
+  <!-- laurel left -->
+  <path d="M7 16 Q5 12 8 9 Q9 12 7 16Z" fill="#c9a84c" opacity="0.85"/>
+  <path d="M7 16 Q4 15 5 11 Q8 13 7 16Z" fill="#c9a84c" opacity="0.7"/>
+  <path d="M7 16 Q5 20 8 23 Q9 20 7 16Z" fill="#c9a84c" opacity="0.85"/>
+  <path d="M7 16 Q4 17 5 21 Q8 19 7 16Z" fill="#c9a84c" opacity="0.7"/>
+  <!-- laurel right -->
+  <path d="M25 16 Q27 12 24 9 Q23 12 25 16Z" fill="#c9a84c" opacity="0.85"/>
+  <path d="M25 16 Q28 15 27 11 Q24 13 25 16Z" fill="#c9a84c" opacity="0.7"/>
+  <path d="M25 16 Q27 20 24 23 Q23 20 25 16Z" fill="#c9a84c" opacity="0.85"/>
+  <path d="M25 16 Q28 17 27 21 Q24 19 25 16Z" fill="#c9a84c" opacity="0.7"/>
+  <!-- stems -->
+  <line x1="7" y1="16" x2="25" y2="16" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
+  <!-- C letter -->
+  <text x="16" y="21" font-family="Georgia, serif" font-size="14" font-weight="bold"
+        text-anchor="middle" fill="#e8dfc4">C</text>
+</svg>
