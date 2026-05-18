@@ -434,12 +434,12 @@ section {
    ===================================================== */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     gap: 3px;
 }
 
-/* Wide item spans 2 columns */
+/* Wide item spans both columns */
 .gallery-item--wide {
     grid-column: span 2;
 }
