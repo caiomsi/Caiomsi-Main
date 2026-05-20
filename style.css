@@ -441,16 +441,6 @@ section {
 /* Family photo spans first 2 cols, sits beside Lincoln */
 .gallery-item--wide {
     grid-column: span 2;
-}
-
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 1;
-    background: var(--bg-card);
-}
-
-.gallery-item--wide {
     aspect-ratio: 2/1;
 }
 
@@ -493,7 +483,6 @@ section {
         grid-template-columns: repeat(2, 1fr);
     }
     .gallery-item--wide {
-        grid-column: span 2;
         aspect-ratio: 16/9;
     }
     .gallery-item--wide img {
