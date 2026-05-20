@@ -44,6 +44,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 // ================================================
+// CAROUSEL
+// ================================================
+const slides = document.querySelectorAll('.carousel-slide');
+const dots   = document.querySelectorAll('.carousel-dot');
+let current  = 0;
+
+function goTo(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+}
+
+document.querySelector('.carousel-btn--prev')
+    ?.addEventListener('click', () => goTo(current - 1));
+document.querySelector('.carousel-btn--next')
+    ?.addEventListener('click', () => goTo(current + 1));
+dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+
+// ================================================
 // SCROLL-SPY — highlights active nav link
 // rootMargin fires when section is in the middle third
 // ================================================

@@ -136,40 +136,51 @@
 
 
     <!-- ════════════════════════════════════════════════════
-         GALLERY SECTION
-         Add more .gallery-item divs as you upload more photos.
+         GALLERY — carousel, one photo at a time
+         To add a photo: copy a .carousel-slide block,
+         set the src and caption, then add a dot in .carousel-dots
          ════════════════════════════════════════════════════ -->
     <section id="gallery">
-        <div class="gallery-grid">
+        <div class="carousel">
 
-            <!-- Family at Capitol steps — spans 2 cols -->
-            <div class="gallery-item gallery-item--wide">
-                <img src="assets/img/caio-family.jpg" alt="With family" loading="lazy">
-                <div class="gallery-caption">Family · Washington D.C.</div>
+            <button class="carousel-btn carousel-btn--prev" aria-label="Previous photo">&#8592;</button>
+            <button class="carousel-btn carousel-btn--next" aria-label="Next photo">&#8594;</button>
+
+            <div class="carousel-track">
+
+                <div class="carousel-slide active">
+                    <img src="assets/img/caio-family.jpg" alt="With family" loading="lazy">
+                    <div class="gallery-caption">Family · Washington D.C.</div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="assets/img/caio-capitol.jpg" alt="U.S. Capitol" loading="lazy">
+                    <div class="gallery-caption">U.S. Capitol · Hall of Statues</div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="assets/img/caio-dc.jpg" alt="Lincoln Memorial" loading="lazy">
+                    <div class="gallery-caption">Lincoln Memorial · The Mall</div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="assets/img/caio-profile.jpg" alt="National Mall at sunset" loading="lazy">
+                    <div class="gallery-caption">National Mall · Sunset</div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="assets/img/caio-beach.jpg" alt="Beach" loading="lazy">
+                    <div class="gallery-caption">Game on.</div>
+                </div>
+
             </div>
 
-            <!-- Lincoln statue inside the Capitol rotunda -->
-            <div class="gallery-item">
-                <img src="assets/img/caio-capitol.jpg" alt="U.S. Capitol" loading="lazy">
-                <div class="gallery-caption">U.S. Capitol · Hall of Statues</div>
-            </div>
-
-            <!-- Thumbs up at the Reflecting Pool -->
-            <div class="gallery-item">
-                <img src="assets/img/caio-dc.jpg" alt="Lincoln Memorial" loading="lazy">
-                <div class="gallery-caption">Lincoln Memorial · The Mall</div>
-            </div>
-
-            <!-- Sunset solo — National Mall -->
-            <div class="gallery-item">
-                <img src="assets/img/caio-profile.jpg" alt="National Mall at sunset" loading="lazy">
-                <div class="gallery-caption">National Mall · Sunset</div>
-            </div>
-
-            <!-- Beach / athlete -->
-            <div class="gallery-item">
-                <img src="assets/img/caio-beach.jpg" alt="Beach" loading="lazy">
-                <div class="gallery-caption">Game on.</div>
+            <div class="carousel-dots">
+                <button class="carousel-dot active" aria-label="Slide 1"></button>
+                <button class="carousel-dot" aria-label="Slide 2"></button>
+                <button class="carousel-dot" aria-label="Slide 3"></button>
+                <button class="carousel-dot" aria-label="Slide 4"></button>
+                <button class="carousel-dot" aria-label="Slide 5"></button>
             </div>
 
         </div>
