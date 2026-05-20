@@ -22,7 +22,6 @@ navToggle.addEventListener('click', () => {
     navLinks.classList.toggle('open');
 });
 
-// Close mobile nav when a link is clicked
 navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('open');
@@ -31,7 +30,7 @@ navLinks.querySelectorAll('a').forEach(link => {
 
 
 // ================================================
-// SMOOTH SCROLL — for all anchor links on the page
+// SMOOTH SCROLL
 // ================================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -45,10 +44,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 // ================================================
+// SCROLL-SPY — highlights active nav link
+// rootMargin fires when section is in the middle third
+// ================================================
+const spySections = document.querySelectorAll('section[id]');
+const spyLinks    = document.querySelectorAll('.nav-links a');
+
+const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            spyLinks.forEach(a => a.classList.remove('active'));
+            const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+            if (active) active.classList.add('active');
+        }
+    });
+}, { rootMargin: '-35% 0px -60% 0px' });
+
+spySections.forEach(s => spyObserver.observe(s));
+
+
+// ================================================
 // FADE-IN ON SCROLL
-// Elements listed below fade in as they enter the
-// viewport. To add more elements, add their selector
-// to the querySelectorAll list.
 // ================================================
 const fadeTargets = document.querySelectorAll(
     '.project-card, .skill-block, .about-text, .about-image-block, .stat, .section-intro'
@@ -56,16 +72,53 @@ const fadeTargets = document.querySelectorAll(
 
 fadeTargets.forEach(el => el.classList.add('fade-in'));
 
-const observer = new IntersectionObserver(
+const fadeObserver = new IntersectionObserver(
     (entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // only animate once
+                fadeObserver.unobserve(entry.target);
             }
         });
     },
     { threshold: 0.12 }
 );
 
-fadeTargets.forEach(el => observer.observe(el));
+fadeTargets.forEach(el => fadeObserver.observe(el));
+
+
+// ================================================
+// CONTACT FORM — intercepts submit, sends via fetch
+// Shows success message inline instead of redirecting
+// ================================================
+const contactForm    = document.getElementById('contact-form');
+const contactSuccess = document.getElementById('contact-success');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = contactForm.querySelector('.contact-btn');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+
+        try {
+            const res = await fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: { Accept: 'application/json' }
+            });
+
+            if (res.ok) {
+                contactForm.reset();
+                contactSuccess.style.display = 'block';
+                btn.textContent = 'Sent ✓';
+            } else {
+                btn.textContent = 'Try again →';
+                btn.disabled = false;
+            }
+        } catch {
+            btn.textContent = 'Try again →';
+            btn.disabled = false;
+        }
+    });
+}
