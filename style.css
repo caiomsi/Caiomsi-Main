@@ -434,12 +434,11 @@ section {
    ===================================================== */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
     gap: 3px;
 }
 
-/* Wide item spans both columns */
+/* Family photo spans first 2 cols, sits beside Lincoln */
 .gallery-item--wide {
     grid-column: span 2;
 }
@@ -496,6 +495,9 @@ section {
     .gallery-item--wide {
         grid-column: span 2;
         aspect-ratio: 16/9;
+    }
+    .gallery-item--wide img {
+        object-position: center center;
     }
 }
 
