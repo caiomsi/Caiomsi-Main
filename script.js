@@ -64,6 +64,19 @@ document.querySelector('.carousel-btn--next')
     ?.addEventListener('click', () => goTo(current + 1));
 dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
+// Swipe support for mobile
+let touchStartX = 0;
+const carouselEl = document.querySelector('.carousel');
+if (carouselEl) {
+    carouselEl.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    carouselEl.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+    }, { passive: true });
+}
+
 
 // ================================================
 // SCROLL-SPY — highlights active nav link

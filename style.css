@@ -875,24 +875,10 @@ footer p {
    ===================================================== */
 @media (max-width: 768px) {
 
-    /* Stack about section vertically on mobile */
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
+    /* ── Global spacing ── */
+    section { padding: 3.5rem 1.25rem; }
 
-    .about-image-placeholder {
-        aspect-ratio: 1;
-        max-width: 220px;
-        margin: 0 auto;
-    }
-
-    .about-stats {
-        gap: 2rem;
-        justify-content: center;
-    }
-
-    /* Mobile nav */
+    /* ── Navigation ── */
     .nav-links {
         display: none;
         flex-direction: column;
@@ -900,33 +886,64 @@ footer p {
         top: 100%;
         left: 0; right: 0;
         background: rgba(11, 10, 8, 0.97);
-        padding: 1.5rem 2rem 2rem;
+        padding: 1.5rem 1.25rem 2rem;
         border-bottom: 1px solid var(--border);
-        gap: 1.5rem;
+        gap: 1.25rem;
     }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: block; }
 
-    .nav-links.open {
-        display: flex;
+    /* ── Hero ── */
+    .hero-name {
+        font-size: clamp(3.5rem, 21vw, 8rem);
+        letter-spacing: 0.1em;
     }
+    .hero-roles {
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+    }
+    .hero-motto { font-size: 1rem; }
+    .hero-cta   { padding: 1rem 2rem; }
 
-    .nav-toggle {
-        display: block;
-    }
+    /* ── Carousel ── */
+    .carousel { padding-top: 75%; }
+    .carousel-btn { width: 40px; height: 40px; font-size: 0.9rem; }
 
-    /* Center section headers on mobile */
-    .connect-inner .section-header {
-        flex-wrap: wrap;
-        justify-content: flex-start;
+    /* ── About ── */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
+    .about-photo,
+    .about-image-placeholder {
+        aspect-ratio: 1;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    .about-stats { gap: 1.75rem; justify-content: center; }
 
-    .social-links {
-        flex-direction: column;
-        align-items: center;
-    }
+    /* ── Section headers ── */
+    .section-rule { display: none; }
+    .section-header { margin-bottom: 1.75rem; }
 
-    .social-btn {
-        width: 100%;
-        max-width: 280px;
-        justify-content: center;
-    }
+    /* ── Projects / Skills ── */
+    .projects-grid,
+    .skills-grid { gap: 1rem; }
+
+    /* ── Connect ── */
+    .connect-inner .section-header { justify-content: flex-start; }
+    .social-links { flex-direction: column; align-items: stretch; }
+    .social-btn   { width: 100%; justify-content: center; }
+
+    /* Prevent iOS from zooming in on form focus */
+    .contact-form input,
+    .contact-form textarea { font-size: 1rem; }
+    .contact-btn { align-self: stretch; text-align: center; }
+}
+
+/* ── Very small phones ── */
+@media (max-width: 380px) {
+    .hero-name { font-size: 3rem; letter-spacing: 0.08em; }
+    .about-stats { gap: 1.25rem; }
+    .stat-num { font-size: 1.5rem; }
 }
