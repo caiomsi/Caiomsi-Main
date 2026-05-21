@@ -158,7 +158,7 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
+    object-position: center center;
     filter: brightness(0.22) saturate(0.5) sepia(0.2);
     z-index: 0;
 }
