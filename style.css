@@ -896,9 +896,10 @@ footer p {
     /* ── Hero ── */
     .hero-content { padding: 1rem; }
     .hero-name {
-        font-size: 19vw;
-        letter-spacing: 0.05em;
+        font-size: 16vw;
+        letter-spacing: 0;
         white-space: nowrap;
+        overflow: visible;
     }
     .hero-roles {
         font-size: 0.7rem;
@@ -945,7 +946,7 @@ footer p {
 
 /* ── Very small phones ── */
 @media (max-width: 380px) {
-    .hero-name { font-size: 3rem; letter-spacing: 0.08em; }
+    .hero-name { font-size: 14vw; letter-spacing: 0; }
     .about-stats { gap: 1.25rem; }
     .stat-num { font-size: 1.5rem; }
 }
