@@ -894,13 +894,15 @@ footer p {
     .nav-toggle { display: block; }
 
     /* ── Hero ── */
+    .hero-content { padding: 1rem; }
     .hero-name {
-        font-size: clamp(3.5rem, 21vw, 8rem);
-        letter-spacing: 0.1em;
+        font-size: 19vw;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
     }
     .hero-roles {
         font-size: 0.7rem;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.18em;
     }
     .hero-motto { font-size: 1rem; }
     .hero-cta   { padding: 1rem 2rem; }
