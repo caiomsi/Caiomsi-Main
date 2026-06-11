@@ -346,18 +346,19 @@
             </p>
 
             <!-- ══════════════════════════════════════════════
-                 CONTACT FORM — powered by Formspree (free)
-                 To activate:
-                 1. Go to formspree.io and create a free account
-                 2. Create a new form — you'll get an ID like "xabcdefg"
-                 3. Replace YOUR_FORM_ID below with that ID
+                 CONTACT FORM — powered by MSI Forms (our own
+                 backend at forms.caiomsi.com, repo: MSI-Forms).
+                 Submissions land in the lead inbox there.
+                 The hidden "company" field is a honeypot —
+                 leave it in place, bots fill it, humans don't.
                  ══════════════════════════════════════════════ -->
-            <form action="https://formspree.io/f/YOUR_FORM_ID"
+            <form action="https://forms.caiomsi.com/api/submit"
                   method="POST"
                   class="contact-form"
                   id="contact-form">
                 <input  type="text"  name="name"    placeholder="Your name"    required>
                 <input  type="email" name="email"   placeholder="Your email"   required>
+                <input  type="text"  name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <textarea            name="message" placeholder="Your message" required></textarea>
                 <button type="submit" class="contact-btn">Send Message →</button>
                 <p class="contact-success" id="contact-success">Message sent. I'll be in touch.</p>

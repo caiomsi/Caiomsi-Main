@@ -33,7 +33,7 @@ Behavior in `script.js` is wired to specific class names and ids in `index.html`
 
 ### Contact form
 
-The form in the `connect` section posts to **Formspree**. The `action` URL is currently the placeholder `https://formspree.io/f/YOUR_FORM_ID` — it must be replaced with a real Formspree form id for submissions to work. `script.js` intercepts submit, posts via `fetch`, and toggles an inline `#contact-success` message instead of redirecting.
+The form in the `connect` section posts to **MSI Forms**, our own backend at `https://forms.caiomsi.com/api/submit` (repo: `caiomsi/MSI-Forms`, a Vercel project). `script.js` intercepts submit, posts JSON via `fetch`, and toggles an inline `#contact-success` message instead of redirecting. The visually-hidden `company` input is a spam honeypot (styled by `.hp-field`) — keep it. To read submissions, see the MSI-Forms README (lead inbox at `/api/submissions?key=…`).
 
 ## Conventions
 

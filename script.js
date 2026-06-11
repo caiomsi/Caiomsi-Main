@@ -256,8 +256,8 @@ if (contactForm) {
         try {
             const res = await fetch(contactForm.action, {
                 method: 'POST',
-                body: new FormData(contactForm),
-                headers: { Accept: 'application/json' }
+                body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
+                headers: { 'Content-Type': 'application/json', Accept: 'application/json' }
             });
 
             if (res.ok) {

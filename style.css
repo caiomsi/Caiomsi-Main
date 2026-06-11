@@ -825,6 +825,16 @@ section {
     min-height: 130px;
 }
 
+/* Honeypot field — invisible to humans, bots fill it. Don't remove. */
+.contact-form .hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
 .contact-btn {
     font-family: var(--font-display);
     font-size: 0.72rem;
