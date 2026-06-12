@@ -253,10 +253,16 @@ if (contactForm) {
         btn.textContent = 'Sending…';
         btn.disabled = true;
 
+        // Browser autofill can fill the hidden "company" honeypot and get a
+        // real visitor silently treated as a bot — always send it empty here.
+        // The honeypot still catches bots that POST the form fields directly.
+        const data = Object.fromEntries(new FormData(contactForm));
+        data.company = '';
+
         try {
             const res = await fetch(contactForm.action, {
                 method: 'POST',
-                body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
+                body: JSON.stringify(data),
                 headers: { 'Content-Type': 'application/json', Accept: 'application/json' }
             });
 
