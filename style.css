@@ -151,28 +151,112 @@ img {
     overflow: hidden;
 }
 
-/* Real photo background — darkened so text stays readable */
-.hero-bg-img {
+/* ── ARCHITECTURAL BACKDROP ─────────────────────────
+   Replaces the old photo background. Three stacked
+   layers build a dark stone chamber behind the name:
+   a colonnade, a shaft of overhead light, and a horizon.
+   ─────────────────────────────────────────────────── */
+.hero-architecture {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    filter: brightness(0.22) saturate(0.5) sepia(0.2);
     z-index: 0;
+    overflow: hidden;
+    background:
+        linear-gradient(180deg, #05040300 0%, rgba(5, 4, 3, 0.55) 100%),
+        radial-gradient(ellipse 80% 60% at 50% 30%, #1a160e 0%, #0b0a08 60%, #050403 100%);
 }
 
-/* Color atmosphere overlaid on top of the photo */
+/* Fluted columns — vertical bands of light and shadow.
+   Two gradients: the wide column bodies, then the fine
+   flutes carved into them. */
+.hero-colonnade {
+    position: absolute;
+    inset: -5% 0 0;
+    background-image:
+        /* flutes carved down each column face */
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            transparent 7px,
+            rgba(0, 0, 0, 0.22) 7px,
+            rgba(0, 0, 0, 0.22) 9px,
+            transparent 9px,
+            transparent 16px
+        ),
+        /* the column bodies: lit face, shadowed side, dark gap */
+        repeating-linear-gradient(
+            90deg,
+            rgba(214, 198, 158, 0.085) 0px,
+            rgba(214, 198, 158, 0.085) 46px,
+            rgba(150, 132, 92, 0.045) 46px,
+            rgba(150, 132, 92, 0.045) 82px,
+            rgba(0, 0, 0, 0.55) 82px,
+            rgba(0, 0, 0, 0.55) 96px,
+            transparent 96px,
+            transparent 216px
+        );
+    /* Columns stand tallest at the edges and fall away
+       behind the name so the type always reads first. */
+    -webkit-mask-image: radial-gradient(ellipse 52% 62% at 50% 42%, transparent 28%, #000 88%);
+            mask-image: radial-gradient(ellipse 52% 62% at 50% 42%, transparent 28%, #000 88%);
+}
+
+/* A shaft of light falling from above, as through an oculus */
+.hero-lightshaft {
+    position: absolute;
+    left: 50%;
+    top: -12%;
+    width: min(760px, 78vw);
+    height: 88%;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        180deg,
+        rgba(255, 240, 200, 0.16) 0%,
+        rgba(201, 168, 76, 0.07) 45%,
+        transparent 84%
+    );
+    filter: blur(28px);
+}
+
+/* The floor line the columns stand on */
+.hero-horizon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 12%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(201, 168, 76, 0.30) 22%,
+        rgba(201, 168, 76, 0.45) 50%,
+        rgba(201, 168, 76, 0.30) 78%,
+        transparent
+    );
+}
+
+/* Ground haze pooling under the horizon */
+.hero-horizon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 190px;
+    background: linear-gradient(180deg, rgba(201, 168, 76, 0.05), transparent 70%);
+}
+
+/* Color atmosphere overlaid on the architecture */
 #hero::before {
     content: '';
     position: absolute;
     inset: 0;
     z-index: 1;
     background:
-        radial-gradient(ellipse at 15% 60%, rgba(139, 26, 26, 0.18) 0%, transparent 50%),
-        radial-gradient(ellipse at 85% 20%, rgba(201, 168, 76, 0.10) 0%, transparent 45%),
-        radial-gradient(ellipse at 50% 90%, rgba(11, 10, 8, 0.6) 0%, transparent 60%);
+        /* warm pool of light where the name sits */
+        radial-gradient(ellipse 55% 42% at 50% 38%, rgba(201, 168, 76, 0.10) 0%, transparent 70%),
+        /* deep corners so the chamber falls away at the edges */
+        radial-gradient(ellipse 90% 80% at 50% 45%, transparent 40%, rgba(3, 3, 2, 0.85) 100%);
     pointer-events: none;
 }
 
@@ -183,9 +267,8 @@ img {
     inset: 0;
     z-index: 2;
     background-image:
-        linear-gradient(rgba(201, 168, 76, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201, 168, 76, 0.025) 1px, transparent 1px);
-    background-size: 64px 64px;
+        linear-gradient(rgba(201, 168, 76, 0.022) 1px, transparent 1px);
+    background-size: 100% 78px;
     pointer-events: none;
 }
 
@@ -328,7 +411,7 @@ section {
 }
 
 #about    { background-color: var(--bg); }
-#gallery  { background-color: var(--bg); padding: 0; }
+#gallery  { background-color: var(--bg); }
 #cursus   { background-color: var(--bg); }
 #projects { background-color: var(--bg-2); }
 #skills   { background-color: var(--bg); }
@@ -470,106 +553,111 @@ section {
 
 
 /* =====================================================
-   GALLERY — CAROUSEL
+   GALLERY — UNIFORM PLATES
+   A row of identically framed photographs, like plates
+   bound into a book. Every image is forced into the same
+   3:4 frame with object-fit, so mixed portrait/landscape
+   originals sit together without awkward cropping.
    ===================================================== */
-.carousel {
+.plate-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 2rem;
+}
+
+.plate {
+    margin: 0;
+}
+
+/* The frame — a thin gold rule with the photo inset,
+   so the image sits inside a border rather than bleeding
+   to the edge. */
+.plate-frame {
     position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 */
-    background: #000;
+    aspect-ratio: 3 / 4;
     overflow: hidden;
+    border: 1px solid var(--border);
+    padding: 6px;
+    background: var(--bg-card);
+    transition: border-color var(--transition), transform var(--transition);
 }
 
-.carousel-slide {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    opacity: 0;
-    transition: opacity 0.55s ease;
-    pointer-events: none;
-}
-
-.carousel-slide.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.carousel-slide img {
+.plate-frame img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
+    object-position: center;
     display: block;
+    filter: saturate(0.85) contrast(1.04);
+    transition: filter var(--transition), transform 0.6s ease;
 }
 
-.gallery-caption {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
-    font-family: var(--font-display);
-    font-size: 0.62rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--text);
-    padding: 2rem 1.5rem 1rem;
+.plate:hover .plate-frame {
+    border-color: rgba(201, 168, 76, 0.42);
+    transform: translateY(-4px);
 }
 
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background: rgba(11, 10, 8, 0.55);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-size: 1.1rem;
-    width: 44px;
-    height: 44px;
-    cursor: pointer;
-    transition: background var(--transition), border-color var(--transition), color var(--transition);
+.plate:hover .plate-frame img {
+    filter: saturate(1) contrast(1.06);
+    transform: scale(1.03);
+}
+
+/* Empty state — a numbered plate awaiting its photograph.
+   Delete these along with .plate-empty markup once the
+   real images are in. */
+.plate-empty {
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(4px);
+    width: 100%;
+    height: 100%;
+    background:
+        repeating-linear-gradient(
+            135deg,
+            rgba(201, 168, 76, 0.035) 0px,
+            rgba(201, 168, 76, 0.035) 1px,
+            transparent 1px,
+            transparent 9px
+        ),
+        var(--bg-2);
 }
 
-.carousel-btn:hover {
-    background: rgba(201, 168, 76, 0.15);
-    border-color: var(--gold);
+.plate-empty span {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+    opacity: 0.5;
+}
+
+.plate-caption {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 1rem;
+    transition: color var(--transition);
+}
+
+.plate:hover .plate-caption {
     color: var(--gold);
 }
 
-.carousel-btn--prev { left:  1.25rem; }
-.carousel-btn--next { right: 1.25rem; }
-
-.carousel-dots {
-    position: absolute;
-    bottom: 1.25rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.5rem;
-    z-index: 10;
+@media (max-width: 700px) {
+    .plate-row { gap: 1.25rem; }
+    .plate-caption {
+        font-size: 0.55rem;
+        letter-spacing: 0.18em;
+        margin-top: 0.7rem;
+    }
 }
 
-.carousel-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.35);
-    border: none;
-    cursor: pointer;
-    transition: background var(--transition), transform var(--transition);
-    padding: 0;
-}
-
-.carousel-dot.active {
-    background: var(--gold);
-    transform: scale(1.35);
-}
-
-@media (max-width: 768px) {
-    .carousel { padding-top: 75%; } /* 4:3 */
-    .carousel-btn { width: 36px; height: 36px; font-size: 0.9rem; }
+/* `hidden` must win over the base `section` display rules
+   so a drafted section stays out of the page entirely. */
+[hidden] {
+    display: none !important;
 }
 
 
@@ -1145,10 +1233,6 @@ footer p {
     .hero-motto { font-size: 1rem; }
     .hero-cta   { padding: 1rem 2rem; }
 
-    /* ── Carousel ── */
-    .carousel { padding-top: 75%; }
-    .carousel-btn { width: 40px; height: 40px; font-size: 0.9rem; }
-
     /* ── About ── */
     .about-grid {
         grid-template-columns: 1fr;
@@ -1471,20 +1555,3 @@ textarea:focus-visible {
     }
 }
 
-
-/* ── GALLERY CAPTION / DOTS CLEARANCE ───────────────
-   The caption sits flush to the bottom edge and the dots
-   are centred 1.25rem up, so on narrow screens a long
-   caption runs straight through them. Give the caption
-   room on the right and lift the dots clear.
-   ─────────────────────────────────────────────────── */
-@media (max-width: 700px) {
-    .gallery-caption {
-        padding: 2rem 1.25rem 2.4rem;
-        font-size: 0.55rem;
-        letter-spacing: 0.2em;
-    }
-    .carousel-dots {
-        bottom: 0.7rem;
-    }
-}

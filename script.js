@@ -47,7 +47,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // SCROLL PROGRESS BAR + HERO PARALLAX
 // ================================================
 const progressBar = document.getElementById('progress-bar');
-const heroBg = document.querySelector('.hero-bg-img');
+// Parallax target — the architectural backdrop drifts slower
+// than the page, giving the hero depth without a photograph.
+const heroBg = document.querySelector('.hero-architecture');
 
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
@@ -58,44 +60,18 @@ window.addEventListener('scroll', () => {
     }
 
     if (heroBg && scrollY < window.innerHeight) {
-        heroBg.style.transform = `translateY(${scrollY * 0.35}px)`;
+        heroBg.style.transform = `translateY(${scrollY * 0.18}px)`;
     }
 }, { passive: true });
 
 
 // ================================================
-// CAROUSEL
+// GALLERY
 // ================================================
-const slides = document.querySelectorAll('.carousel-slide');
-const dots   = document.querySelectorAll('.carousel-dot');
-let current  = 0;
-
-function goTo(index) {
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = (index + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
-}
-
-document.querySelector('.carousel-btn--prev')
-    ?.addEventListener('click', () => goTo(current - 1));
-document.querySelector('.carousel-btn--next')
-    ?.addEventListener('click', () => goTo(current + 1));
-dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-
-// Swipe support for mobile
-let touchStartX = 0;
-const carouselEl = document.querySelector('.carousel');
-if (carouselEl) {
-    carouselEl.addEventListener('touchstart', e => {
-        touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-    carouselEl.addEventListener('touchend', e => {
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
-    }, { passive: true });
-}
+// The gallery is a static row of framed plates styled
+// entirely in CSS (.plate-row / .plate) — no JavaScript
+// needed. The old carousel and its swipe handling were
+// removed along with it.
 
 
 // ================================================

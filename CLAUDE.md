@@ -20,9 +20,9 @@ Deployment is automatic via GitHub Pages on push to the default branch (**`main`
 
 Three files, each with a single responsibility, coupled by shared CSS class / element-id names:
 
-- **`index.html`** — all content and page structure. One `<nav>` plus seven `<section>` elements with stable ids: `hero`, `about`, `gallery`, `cursus`, `projects`, `skills`, `connect`. Nav links and scroll-spy target these ids, so renaming a section id means updating the matching `<a href="#...">` in the nav too.
+- **`index.html`** — all content and page structure. One `<nav>` plus seven `<section>` elements with stable ids: `hero`, `about`, `gallery`, `cursus`, `projects`, `skills`, `connect`. Nav links and scroll-spy target these ids, so renaming a section id means updating the matching `<a href="#...">` in the nav too. **`#gallery` is currently `hidden`** and its nav link commented out — see "Gallery" below.
 - **`style.css`** — all styling. The top `:root` block defines **design tokens** (colors like `--gold`, fonts, `--max-width`, `--transition`). Change the look globally by editing these variables rather than hardcoding values elsewhere. The Roman/classical aesthetic (Cinzel + Cormorant Garamond fonts, gold-on-near-black palette) flows from these tokens.
-- **`script.js`** — all interactivity, organized as independent comment-delimited blocks (navbar scroll state, mobile nav toggle, smooth scroll, scroll progress bar + hero parallax, carousel with swipe, scroll-spy, fade-in / reveal / stat animations via `IntersectionObserver`, 3D card tilt, gold particle canvas, contact form).
+- **`script.js`** — all interactivity, organized as independent comment-delimited blocks (navbar scroll state, mobile nav toggle, smooth scroll, scroll progress bar + hero parallax, scroll-spy, fade-in / reveal / stat animations via `IntersectionObserver`, 3D card tilt, gold particle canvas, contact form). The carousel block was removed with the old gallery — the gallery is pure CSS now.
 
 ### Key coupling to respect
 
@@ -30,6 +30,36 @@ Behavior in `script.js` is wired to specific class names and ids in `index.html`
 - Scroll animations attach to selectors like `.project-card`, `.skill-block`, `.stat`, `.section-intro`, `.reveal` — adding a new card/section of those types makes it animate automatically; using different class names means it won't.
 - The carousel relies on `.carousel-slide` / `.carousel-dot` pairs and `.carousel-btn--prev/--next`.
 - Scroll-spy maps every `section[id]` to `.nav-links a[href="#id"]`.
+
+### The hero has no photograph
+
+`#hero` deliberately contains **no image**. Its backdrop is drawn entirely in CSS
+by `.hero-architecture` — a colonnade of fluted columns (`.hero-colonnade`, layered
+`repeating-linear-gradient`s masked away from the centre so the name stays legible),
+an overhead shaft of light (`.hero-lightshaft`), and a floor line (`.hero-horizon`).
+`#hero::before` adds the warm pool and deep corners; `#hero::after` adds fine
+horizontal courses. The parallax in `script.js` targets `.hero-architecture`.
+
+It previously used a casual photo of Caio as a darkened background; that was
+removed for a more professional look. **Don't reintroduce a photographic hero
+background.** If the hero needs retuning, adjust the CSS layers above.
+
+### Gallery
+
+The gallery is a row of uniform plates (`.plate-row` / `.plate`), each cropped to
+the same 3:4 frame via `object-fit: cover`, so mixed portrait and landscape
+originals sit side by side without awkward cropping. No JavaScript.
+
+It is **awaiting new photography**: the section carries `hidden`, its nav `<li>` is
+commented out, and each plate shows a numbered `.plate-empty` placeholder. The
+comment block above the section in `index.html` lists the three steps to turn it on
+(add images, swap `.plate-empty` for `<img>`, remove `hidden` + uncomment the nav
+link). `[hidden] { display: none !important; }` in the stylesheet ensures a drafted
+section really stays out of the page.
+
+`assets/img/` still holds `caio-beach`, `caio-capitol`, `caio-dc`, and `caio-family`
+from the old carousel. They are **unreferenced** — kept only in case Caio reuses
+them. Only `caio-profile.jpg` is live (the About portrait and the OG/Twitter image).
 
 ### Section numbering
 

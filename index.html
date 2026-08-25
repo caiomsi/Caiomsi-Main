@@ -90,7 +90,8 @@
             <a href="#" class="nav-logo">C · MSI</a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <!-- Re-enable together with the #gallery section:
+                <li><a href="#gallery">Gallery</a></li> -->
                 <li><a href="#cursus">Cursus</a></li>
                 <li><a href="#projects">Works</a></li>
                 <li><a href="#skills">Virtues</a></li>
@@ -106,8 +107,19 @@
          "Nec Spe Nec Metu" = Without hope, without fear
          ════════════════════════════════════════════════════ -->
     <section id="hero">
-        <!-- Background photo — darkened behind the text -->
-        <img src="assets/img/caio-dc.jpg" alt="" class="hero-bg-img" aria-hidden="true" loading="eager" width="2000" height="1500">
+        <!-- ══════════════════════════════════════════════
+             Architectural backdrop — no photograph. A dark
+             stone chamber: a colonnade of fluted columns, a
+             shaft of light from above, and the horizon rule.
+             Purely decorative, so it is hidden from screen
+             readers. Edit the look in the HERO section of
+             style.css, not here.
+             ══════════════════════════════════════════════ -->
+        <div class="hero-architecture" aria-hidden="true">
+            <div class="hero-colonnade"></div>
+            <div class="hero-lightshaft"></div>
+            <div class="hero-horizon"></div>
+        </div>
         <div class="hero-content">
             <p class="hero-era">— MMXXV —</p>
 
@@ -199,49 +211,58 @@
 
 
     <!-- ════════════════════════════════════════════════════
-         GALLERY — carousel, one photo at a time
-         To add a photo: copy a .carousel-slide block,
-         set the src and caption, then add a dot in .carousel-dots
+         GALLERY — a row of uniform plates
+         ────────────────────────────────────────────────────
+         STATUS: awaiting new photography. The section is
+         marked `hidden` and its nav link is commented out,
+         so nothing unfinished shows on the live site.
+
+         TO TURN IT ON, three steps:
+           1. Drop the photos into assets/img/ (lowercase,
+              hyphenated names — they are an SEO signal).
+           2. In each .plate below, replace the
+              <div class="plate-empty"> with the <img> line
+              shown in the comment beside it, and write a
+              real caption + alt text.
+           3. Delete `hidden` from the <section> tag below,
+              and uncomment the Gallery <li> in the nav.
+
+         Every plate is cropped to the same 3:4 frame, so
+         portrait and landscape originals sit side by side
+         without any awkward cropping. Add or remove a
+         .plate block to change the count — the row reflows.
          ════════════════════════════════════════════════════ -->
-    <section id="gallery">
-        <div class="carousel">
+    <section id="gallery" hidden>
+        <div class="section-container">
 
-            <button class="carousel-btn carousel-btn--prev" aria-label="Previous photo">&#8592;</button>
-            <button class="carousel-btn carousel-btn--next" aria-label="Next photo">&#8594;</button>
+            <div class="plate-row">
 
-            <div class="carousel-slide active">
-                <img src="assets/img/caio-family.jpg" alt="Caio Mamede Silva with family in Washington D.C." loading="lazy" width="1500" height="1125">
-                <div class="gallery-caption">Family · Washington D.C.</div>
+                <figure class="plate reveal">
+                    <div class="plate-frame">
+                        <!-- Replace this div with, e.g.:
+                             <img src="assets/img/NAME.jpg" alt="Describe the photo" loading="lazy" width="1125" height="1500"> -->
+                        <div class="plate-empty"><span>I</span></div>
+                    </div>
+                    <figcaption class="plate-caption">Caption One</figcaption>
+                </figure>
+
+                <figure class="plate reveal">
+                    <div class="plate-frame">
+                        <!-- Replace this div with your <img> — see the plate above -->
+                        <div class="plate-empty"><span>II</span></div>
+                    </div>
+                    <figcaption class="plate-caption">Caption Two</figcaption>
+                </figure>
+
+                <figure class="plate reveal">
+                    <div class="plate-frame">
+                        <!-- Replace this div with your <img> — see the plate above -->
+                        <div class="plate-empty"><span>III</span></div>
+                    </div>
+                    <figcaption class="plate-caption">Caption Three</figcaption>
+                </figure>
+
             </div>
-
-            <div class="carousel-slide">
-                <img src="assets/img/caio-capitol.jpg" alt="Caio Mamede Silva at the U.S. Capitol, Hall of Statues" loading="lazy" width="1125" height="1500">
-                <div class="gallery-caption">U.S. Capitol · Hall of Statues</div>
-            </div>
-
-            <div class="carousel-slide">
-                <img src="assets/img/caio-dc.jpg" alt="Lincoln Memorial on the National Mall" loading="lazy" width="2000" height="1500">
-                <div class="gallery-caption">Lincoln Memorial · The Mall</div>
-            </div>
-
-            <div class="carousel-slide">
-                <img src="assets/img/caio-profile.jpg" alt="National Mall at sunset" loading="lazy" width="1500" height="2000">
-                <div class="gallery-caption">National Mall · Sunset</div>
-            </div>
-
-            <div class="carousel-slide">
-                <img src="assets/img/caio-beach.jpg" alt="Caio Mamede Silva at the beach" loading="lazy" width="1125" height="1500">
-                <div class="gallery-caption">Game on.</div>
-            </div>
-
-            <div class="carousel-dots">
-                <button class="carousel-dot active" aria-label="Slide 1"></button>
-                <button class="carousel-dot" aria-label="Slide 2"></button>
-                <button class="carousel-dot" aria-label="Slide 3"></button>
-                <button class="carousel-dot" aria-label="Slide 4"></button>
-                <button class="carousel-dot" aria-label="Slide 5"></button>
-            </div>
-
         </div>
     </section>
 
