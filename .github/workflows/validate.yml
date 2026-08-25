@@ -3,9 +3,9 @@ name: Validate site
 # Catches broken links and missing image/asset paths automatically on every push.
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -25,5 +25,6 @@ jobs:
             --exclude-path assets
             --exclude "caiomsi\.com"
             --exclude "facebook\.com|instagram\.com|linkedin\.com|google\.com"
+            --exclude "fonts\.googleapis\.com$|fonts\.gstatic\.com$"
             index.html
           fail: true

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caio Mamede Silva — Entrepreneur, Student & Athlete</title>
-    <meta name="description" content="Caio Mamede Silva — entrepreneur, student, and athlete building projects at the intersection of ambition and discipline. Building something worth remembering.">
+    <meta name="description" content="Caio Mamede Silva — entrepreneur, student, and athlete in the Salt Lake Valley, Utah. Founded and ran a pressure washing business for 17 months, now building web studios and software. Building something worth remembering.">
     <link rel="canonical" href="https://caiomsi.com/">
 
     <!-- Open Graph — controls how this link looks when shared on Instagram, iMessage, etc. -->
@@ -28,6 +28,35 @@
         "image": "https://caiomsi.com/assets/img/caio-profile.jpg",
         "description": "Entrepreneur, student, and athlete building something worth remembering.",
         "jobTitle": ["Entrepreneur", "Student", "Athlete"],
+        "homeLocation": {
+            "@type": "Place",
+            "address": {
+                "@type": "PostalAddress",
+                "addressRegion": "UT",
+                "addressCountry": "US"
+            }
+        },
+        "knowsLanguage": [
+            { "@type": "Language", "name": "English" },
+            { "@type": "Language", "name": "Portuguese" },
+            { "@type": "Language", "name": "Spanish" }
+        ],
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Brighton High School",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Cottonwood Heights",
+                "addressRegion": "UT",
+                "addressCountry": "US"
+            }
+        },
+        "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Entrepreneurship and Small Business (ESB)",
+            "credentialCategory": "certification",
+            "recognizedBy": { "@type": "Organization", "name": "Certiport" }
+        },
         "sameAs": [
             "https://www.instagram.com/caiomsi",
             "https://github.com/caiomsi"
@@ -62,6 +91,7 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#cursus">Cursus</a></li>
                 <li><a href="#projects">Works</a></li>
                 <li><a href="#skills">Virtues</a></li>
                 <li><a href="#connect">Connect</a></li>
@@ -108,7 +138,7 @@
          ════════════════════════════════════════════════════ -->
     <section id="about">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header" data-numeral="I">
                 <span class="section-num">I</span>
                 <h2>About</h2>
                 <span class="section-rule"></span>
@@ -130,27 +160,35 @@
                     <h3>Building something worth remembering.</h3>
                     <p>
                         I'm Caio — an entrepreneur, student, and athlete moving at the intersection
-                        of ambition and discipline. I build projects that challenge the status quo,
-                        train like every rep is a vote for who I'm becoming, and study because the
-                        sharpest weapon you can carry is a prepared mind.
+                        of ambition and discipline. At seventeen I founded a pressure washing company
+                        in Gainesville, Florida and ran it alone for seventeen months: finding the
+                        customers, quoting the jobs, doing the work, collecting the payment. Twenty
+                        or so clients later, I'd learned more about business than any classroom
+                        could have taught me.
+                    </p>
+                    <p>
+                        Today I'm based in the Salt Lake Valley, Utah — studying, training, and
+                        building web studios and software for people who deserve better than a
+                        template. Portuguese is my first language, English my second, and Spanish
+                        the one I'm still sharpening.
                     </p>
                     <p>
                         Like the Romans who built roads that outlasted empires, I play the long game.
                     </p>
 
-                    <!-- Edit these three stats — they're just vibes, make them yours -->
+                    <!-- Real numbers, Roman-style — see the Cursus section for the full record -->
                     <div class="about-stats">
                         <div class="stat">
-                            <span class="stat-num">∞</span>
-                            <span class="stat-label">Drive</span>
+                            <span class="stat-num">XVII</span>
+                            <span class="stat-label">Months in Business</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-num">I</span>
-                            <span class="stat-label">Mission</span>
+                            <span class="stat-num">XX+</span>
+                            <span class="stat-label">Clients Served</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-num">0</span>
-                            <span class="stat-label">Days Off</span>
+                            <span class="stat-num">VIII</span>
+                            <span class="stat-label">AP Exams Passed</span>
                         </div>
                     </div>
                 </div>
@@ -209,14 +247,119 @@
 
 
     <!-- ════════════════════════════════════════════════════
+         CURSUS SECTION — the record: work, school, credentials.
+         "Cursus honorum" was the Roman ladder of offices a man
+         climbed in order. This is mine, newest first.
+         To add an entry: copy a .cursus-entry block.
+         ════════════════════════════════════════════════════ -->
+    <section id="cursus">
+        <div class="section-container">
+            <div class="section-header" data-numeral="II">
+                <span class="section-num">II</span>
+                <h2>Cursus</h2>
+                <span class="section-rule"></span>
+            </div>
+            <p class="section-intro">The <em>cursus honorum</em> — the road so far, in the order I walked it.</p>
+
+            <div class="cursus-list">
+
+                <!-- ── CURSUS ENTRY — copy this block to add more ── -->
+                <div class="cursus-entry reveal">
+                    <div class="cursus-meta">
+                        <span class="cursus-date">MMXXV — MMXXVI</span>
+                        <span class="cursus-place">Gainesville, Florida</span>
+                    </div>
+                    <div class="cursus-body">
+                        <h3 class="cursus-role">Owner &amp; Operator</h3>
+                        <p class="cursus-org">Sunbelt Pressure Washing</p>
+                        <p class="cursus-desc">
+                            Founded and ran a pressure washing business solo for seventeen months,
+                            serving twenty-plus residential and commercial customers. Found the
+                            customers, quoted the jobs, kept the schedule, did the work, collected
+                            the payment — and maintained the equipment through every kind of weather.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cursus-entry reveal">
+                    <div class="cursus-meta">
+                        <span class="cursus-date">MMXXIII — MMXXV</span>
+                        <span class="cursus-place">Gainesville, Florida</span>
+                    </div>
+                    <div class="cursus-body">
+                        <h3 class="cursus-role">Store Coordinator</h3>
+                        <p class="cursus-org">Prosperar Fundraising Store</p>
+                        <p class="cursus-desc">
+                            Ran day-to-day operations of a retail store selling books and merchandise
+                            for community fundraising. Trained new team members on procedure, service,
+                            and payment handling; managed the register, the stock, and the floor.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cursus-entry reveal">
+                    <div class="cursus-meta">
+                        <span class="cursus-date">Expected MMXXVII</span>
+                        <span class="cursus-place">Cottonwood Heights, Utah</span>
+                    </div>
+                    <div class="cursus-body">
+                        <h3 class="cursus-role">High School Diploma</h3>
+                        <p class="cursus-org">Brighton High School</p>
+                        <p class="cursus-desc">
+                            3.9 / 4.0 GPA. Eight AP courses completed, scoring 4 or higher on every exam.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cursus-entry reveal">
+                    <div class="cursus-meta">
+                        <span class="cursus-date">MMXXIV</span>
+                        <span class="cursus-place">Certiport</span>
+                    </div>
+                    <div class="cursus-body">
+                        <h3 class="cursus-role">Entrepreneurship &amp; Small Business</h3>
+                        <p class="cursus-org">ESB Certification</p>
+                        <p class="cursus-desc">
+                            Certified in small-business fundamentals — the formal name for what the
+                            pressure washer taught me the hard way.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Languages — edit or add a .lang-item to change -->
+            <div class="cursus-langs reveal">
+                <span class="cursus-langs-label">Linguae</span>
+                <div class="lang-row">
+                    <div class="lang-item">
+                        <span class="lang-name">Portuguese</span>
+                        <span class="lang-level">Native</span>
+                    </div>
+                    <div class="lang-item">
+                        <span class="lang-name">English</span>
+                        <span class="lang-level">Fluent</span>
+                    </div>
+                    <div class="lang-item">
+                        <span class="lang-name">Spanish</span>
+                        <span class="lang-level">Conversational</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════
          PROJECTS / WORKS SECTION
          Duplicate a .project-card block to add more projects.
          Edit: title, description, tags, and the href on the link.
          ════════════════════════════════════════════════════ -->
     <section id="projects">
         <div class="section-container">
-            <div class="section-header">
-                <span class="section-num">II</span>
+            <div class="section-header" data-numeral="III">
+                <span class="section-num">III</span>
                 <h2>Works</h2>
                 <span class="section-rule"></span>
             </div>
@@ -225,45 +368,47 @@
             <div class="projects-grid">
 
                 <!-- ── PROJECT CARD — copy this block to add more ── -->
-                <div class="project-card">
+                <!-- Flagship card: --featured gives it the lighter gradient + brighter border -->
+                <div class="project-card project-card--featured">
                     <div class="project-num">I</div>
-                    <h3 class="project-title">Project Name</h3>
+                    <h3 class="project-title">MSI Studio</h3>
                     <p class="project-desc">
-                        Short description of what this is and why it matters.
-                        Keep it punchy — one or two sentences max.
+                        My web design studio. Custom, hand-built sites for small businesses
+                        that deserve better than a template.
                     </p>
                     <div class="project-tags">
-                        <span class="tag">Startup</span>
-                        <span class="tag">Tech</span>
+                        <span class="tag">Agency</span>
+                        <span class="tag">Web</span>
                     </div>
-                    <a href="#" class="project-link">View →</a>
+                    <a href="https://work.caiomsi.com" target="_blank" rel="noopener" class="project-link">View →</a>
                 </div>
 
                 <div class="project-card">
                     <div class="project-num">II</div>
-                    <h3 class="project-title">Project Name</h3>
+                    <h3 class="project-title">NEXO Studio</h3>
                     <p class="project-desc">
-                        Short description of what this is and why it matters.
-                        Keep it punchy — one or two sentences max.
+                        A second studio, built with friends in Brazil — same craft,
+                        serving businesses back home in Uberlândia.
                     </p>
                     <div class="project-tags">
-                        <span class="tag">Business</span>
-                        <span class="tag">Athletics</span>
+                        <span class="tag">Agency</span>
+                        <span class="tag">Brasil</span>
                     </div>
-                    <a href="#" class="project-link">View →</a>
+                    <a href="https://nexostudioudi.com.br" target="_blank" rel="noopener" class="project-link">View →</a>
                 </div>
 
-                <!-- Featured / coming soon card -->
-                <div class="project-card project-card--featured">
+                <div class="project-card">
                     <div class="project-num">III</div>
-                    <h3 class="project-title">Next Mission</h3>
+                    <h3 class="project-title">Contour</h3>
                     <p class="project-desc">
-                        Something big is in the making. The Romans didn't announce their
-                        campaigns before they were won.
+                        Facial-proportion analysis that runs entirely in your browser.
+                        No server, no uploads — your photo never leaves the device.
                     </p>
                     <div class="project-tags">
-                        <span class="tag">Coming Soon</span>
+                        <span class="tag">Software</span>
+                        <span class="tag">AI</span>
                     </div>
+                    <a href="https://caiomsi.github.io/Contour/" target="_blank" rel="noopener" class="project-link">View →</a>
                 </div>
 
             </div>
@@ -278,8 +423,8 @@
          ════════════════════════════════════════════════════ -->
     <section id="skills">
         <div class="section-container">
-            <div class="section-header">
-                <span class="section-num">III</span>
+            <div class="section-header" data-numeral="IV">
+                <span class="section-num">IV</span>
                 <h2>Virtues</h2>
                 <span class="section-rule"></span>
             </div>
@@ -335,8 +480,8 @@
          ════════════════════════════════════════════════════ -->
     <section id="connect">
         <div class="section-container connect-inner">
-            <div class="section-header">
-                <span class="section-num">IV</span>
+            <div class="section-header" data-numeral="V">
+                <span class="section-num">V</span>
                 <h2>Connect</h2>
                 <span class="section-rule"></span>
             </div>
@@ -392,7 +537,7 @@
          ════════════════════════════════════════════════════ -->
     <footer>
         <div class="greek-border-top"></div>
-        <p>© MMXXV &nbsp;·&nbsp; Caio Mamede Silva &nbsp;·&nbsp; Built with intention.</p>
+        <p>© MMXXVI &nbsp;·&nbsp; Caio Mamede Silva &nbsp;·&nbsp; Built with intention.</p>
     </footer>
 
     <script src="script.js"></script>

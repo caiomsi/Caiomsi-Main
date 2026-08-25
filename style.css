@@ -329,6 +329,7 @@ section {
 
 #about    { background-color: var(--bg); }
 #gallery  { background-color: var(--bg); padding: 0; }
+#cursus   { background-color: var(--bg); }
 #projects { background-color: var(--bg-2); }
 #skills   { background-color: var(--bg); }
 #connect  { background-color: var(--bg-2); }
@@ -437,7 +438,8 @@ section {
 
 .about-stats {
     display: flex;
-    gap: 3rem;
+    flex-wrap: wrap;
+    gap: 2.25rem;
     margin-top: 2.5rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border);
@@ -457,10 +459,13 @@ section {
 }
 
 .stat-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.35em;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text-muted);
+    text-align: center;
+    max-width: 18ch;
+    line-height: 1.6;
 }
 
 
@@ -565,6 +570,142 @@ section {
 @media (max-width: 768px) {
     .carousel { padding-top: 75%; } /* 4:3 */
     .carousel-btn { width: 36px; height: 36px; font-size: 0.9rem; }
+}
+
+
+/* =====================================================
+   CURSUS — the record (work, school, credentials)
+   Each entry is a two-column row: date/place on the left,
+   role + description on the right, joined by a gold rule.
+   ===================================================== */
+.cursus-list {
+    border-top: 1px solid var(--border);
+}
+
+.cursus-entry {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 2.5rem;
+    padding: 2.2rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+}
+
+/* Gold tick that grows on hover — the milestone marker */
+.cursus-entry::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.5s ease;
+}
+
+.cursus-entry:hover::before {
+    width: 90px;
+}
+
+.cursus-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-top: 0.35rem;
+}
+
+.cursus-date {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+}
+
+.cursus-place {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.cursus-role {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+}
+
+.cursus-org {
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin: 0.45rem 0 0.9rem;
+}
+
+.cursus-desc {
+    color: var(--text-muted);
+    max-width: 62ch;
+}
+
+/* ── Languages strip ── */
+.cursus-langs {
+    margin-top: 3.5rem;
+    text-align: center;
+}
+
+.cursus-langs-label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1.5rem;
+}
+
+.lang-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3.5rem;
+}
+
+.lang-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.lang-name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--gold);
+}
+
+.lang-level {
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+@media (max-width: 700px) {
+    .cursus-entry {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+        padding: 1.8rem 0;
+    }
+    .cursus-meta {
+        flex-direction: row;
+        align-items: baseline;
+        gap: 0.9rem;
+        flex-wrap: wrap;
+        padding-top: 0;
+    }
+    .cursus-role { font-size: 1.2rem; }
+    .lang-row { gap: 2rem; }
 }
 
 
@@ -1045,4 +1186,305 @@ footer p {
     .hero-name { font-size: 14vw; letter-spacing: 0; }
     .about-stats { gap: 1.25rem; }
     .stat-num { font-size: 1.5rem; }
+}
+
+
+/* =====================================================
+   ═══ DESIGN REFINEMENT PASS ═══
+   Concept: "carved in stone." Everything below deepens
+   the Roman-inscription idea the site already commits to —
+   stone grain, incised letterforms, gold inlay, and a
+   milestone column down the Cursus. Additive only.
+   ===================================================== */
+
+
+/* ── STONE GRAIN + VIGNETTE ─────────────────────────
+   A fixed film of fractal noise over the whole page so
+   dark surfaces read as travertine instead of flat black.
+   SVG is inlined as a data URI — no network request.
+   ─────────────────────────────────────────────────── */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Vignette — pulls the eye to the centre column */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9997;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+
+/* ── GHOST NUMERAL WATERMARK ────────────────────────
+   The section's Roman numeral, set huge and nearly
+   invisible behind its header — like a chapter mark
+   ghosted into the stone. Driven by data-numeral in HTML.
+   ─────────────────────────────────────────────────── */
+.section-header {
+    position: relative;
+}
+
+.section-header::before {
+    content: attr(data-numeral);
+    position: absolute;
+    left: -0.06em;
+    top: 50%;
+    transform: translateY(-52%);
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 11vw, 9rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.05;
+    letter-spacing: 0.04em;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    white-space: nowrap;
+}
+
+/* Keep the real header above its own watermark */
+.section-num,
+.section-header h2,
+.section-rule {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ── INCISED HEADINGS ───────────────────────────────
+   Raking light across a carved letter: bright along the
+   top bevel, dim at the base, with a dark shadow beneath
+   to suggest depth cut into the surface.
+   ─────────────────────────────────────────────────── */
+.section-header h2 {
+    background: linear-gradient(175deg, #f3e6b8 0%, var(--text) 42%, #a08a4e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Gold hairline under the numeral chip, like a chisel mark */
+.section-num {
+    background: rgba(201, 168, 76, 0.04);
+    transition: background var(--transition), border-color var(--transition);
+}
+
+.section-header:hover .section-num {
+    background: rgba(201, 168, 76, 0.10);
+    border-color: rgba(201, 168, 76, 0.4);
+}
+
+
+/* ── THE MILLIARIUM — Cursus milestone column ───────
+   Roman roads were marked every mile by a stone column.
+   The Cursus list gets one: a gold rule down the left
+   with a diamond marker set at each entry.
+   ─────────────────────────────────────────────────── */
+@media (min-width: 701px) {
+    .cursus-list {
+        position: relative;
+        padding-left: 2.75rem;
+        border-top: none;
+    }
+
+    /* The road itself — fades in at the top, out at the bottom */
+    .cursus-list::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.5rem;
+        bottom: 0.5rem;
+        width: 1px;
+        background: linear-gradient(
+            180deg,
+            transparent,
+            var(--border) 12%,
+            var(--border) 88%,
+            transparent
+        );
+    }
+
+    .cursus-entry {
+        border-bottom: none;
+        padding: 2rem 0 2.6rem;
+    }
+
+    /* Milestone marker — a small gold lozenge on the road */
+    .cursus-entry::after {
+        content: '';
+        position: absolute;
+        left: -2.75rem;
+        top: 2.75rem;
+        width: 9px;
+        height: 9px;
+        margin-left: -4px;
+        background: var(--bg);
+        border: 1px solid var(--gold-dim);
+        transform: rotate(45deg);
+        transition: background var(--transition), border-color var(--transition),
+                    box-shadow var(--transition);
+    }
+
+    .cursus-entry:hover::after {
+        background: var(--gold);
+        border-color: var(--gold);
+        box-shadow: 0 0 0 5px var(--gold-glow);
+    }
+
+    /* The growing tick from the base styles would collide
+       with the column — retire it at this breakpoint. */
+    .cursus-entry::before,
+    .cursus-entry:hover::before {
+        width: 0;
+    }
+
+    /* Faint separators between milestones instead of hard rules */
+    .cursus-entry + .cursus-entry {
+        border-top: 1px solid rgba(201, 168, 76, 0.07);
+    }
+}
+
+/* Role gets the same incised gold treatment on hover */
+.cursus-role {
+    transition: color var(--transition);
+}
+
+.cursus-entry:hover .cursus-role {
+    color: var(--gold);
+}
+
+
+/* ── LINGUAE STRIP ──────────────────────────────────
+   Frame the language strip with two short gold rules so
+   it reads as a carved footnote closing the section.
+   ─────────────────────────────────────────────────── */
+.cursus-langs-label {
+    position: relative;
+    display: inline-block;
+    padding: 0 1.5rem;
+}
+
+.cursus-langs-label::before,
+.cursus-langs-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 2.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim));
+}
+
+.cursus-langs-label::before { right: 100%; }
+.cursus-langs-label::after  { left: 100%; transform: scaleX(-1); }
+
+.lang-item {
+    transition: transform var(--transition);
+}
+
+.lang-item:hover {
+    transform: translateY(-3px);
+}
+
+
+/* ── GOLD SELECTION & SCROLLBAR ─────────────────────
+   Small details, but browser defaults break the spell.
+   ─────────────────────────────────────────────────── */
+::selection {
+    background: rgba(201, 168, 76, 0.28);
+    color: #fff8e1;
+}
+
+::-webkit-scrollbar        { width: 10px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  {
+    background: var(--stone);
+    border: 2px solid var(--bg);
+    border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+/* Firefox */
+html {
+    scrollbar-color: var(--stone) var(--bg);
+    scrollbar-width: thin;
+}
+
+
+/* ── FOCUS VISIBILITY ───────────────────────────────
+   Keyboard users get a clear gold outline everywhere.
+   ─────────────────────────────────────────────────── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+
+/* ── REDUCED MOTION ─────────────────────────────────
+   Honour the system setting: hold everything still and
+   make sure scroll-revealed content is simply visible.
+   ─────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    .reveal,
+    .fade-in {
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+    }
+
+    .stat-num {
+        opacity: 1 !important;
+        filter: none !important;
+    }
+}
+
+
+/* ── MOBILE ADJUSTMENTS FOR THE PASS ────────────────── */
+@media (max-width: 700px) {
+    .section-header::before {
+        font-size: 4.5rem;
+        opacity: 0.04;
+    }
+    body::after {
+        background: radial-gradient(ellipse at 50% 45%, transparent 62%, rgba(0, 0, 0, 0.4) 100%);
+    }
+}
+
+
+/* ── GALLERY CAPTION / DOTS CLEARANCE ───────────────
+   The caption sits flush to the bottom edge and the dots
+   are centred 1.25rem up, so on narrow screens a long
+   caption runs straight through them. Give the caption
+   room on the right and lift the dots clear.
+   ─────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+    .gallery-caption {
+        padding: 2rem 1.25rem 2.4rem;
+        font-size: 0.55rem;
+        letter-spacing: 0.2em;
+    }
+    .carousel-dots {
+        bottom: 0.7rem;
+    }
 }
